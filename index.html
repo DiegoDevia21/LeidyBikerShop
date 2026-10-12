@@ -1,0 +1,1675 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Leidy Biker Shop — Equipo Premium para la Vía</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800;900&family=DM+Sans:wght@300;400;500&family=Barlow:wght@400;500;600&display=swap" rel="stylesheet">
+
+    <style>
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+        :root {
+            --bg:            #070707;
+            --purple-deep:   #151515;
+            --purple-mid:    #C8102E;
+            --purple-accent: #E10600;
+            --purple-hover:  #FF1E1E;
+            --purple-glow:   rgba(225, 6, 0, 0.28);
+            --text-1:        #F5F5F5;
+            --text-2:        #BDBDBD;
+            --text-3:        #777777;
+            --border:        rgba(107, 33, 200, 0.18);
+            --border-hi:     rgba(107, 33, 200, 0.55);
+        }
+
+        html { scroll-behavior: smooth; }
+
+        body {
+            background: var(--bg);
+            color: var(--text-1);
+            font-family: 'DM Sans', sans-serif;
+            overflow-x: hidden;
+        }
+
+        /* ──────────── NAVIGATION ──────────── */
+        .nav {
+            position: fixed;
+            inset: 0 0 auto 0;
+            z-index: 200;
+            height: 64px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 3rem;
+            background: rgba(6, 6, 8, 0.82);
+            backdrop-filter: blur(18px);
+            -webkit-backdrop-filter: blur(18px);
+            border-bottom: 1px solid var(--border);
+            transition: border-color 0.3s;
+        }
+
+        .nav.scrolled { border-color: var(--border-hi); }
+
+        .logo {
+            font-family: 'Barlow Condensed', sans-serif;
+            font-weight: 900;
+            font-size: 1.6rem;
+            letter-spacing: 0.05em;
+            color: var(--text-1);
+            text-decoration: none;
+        }
+        .logo em { font-style: normal; color: var(--purple-accent); }
+
+        .nav-links { display: flex; list-style: none; gap: 2.5rem; }
+
+        .nav-links a {
+            font-family: 'Barlow', sans-serif;
+            font-size: 0.78rem;
+            font-weight: 600;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            color: var(--text-2);
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+        .nav-links a:hover { color: var(--text-1); }
+
+        /* Parallelogram — signature shape used throughout */
+        .chip {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.45rem;
+            padding: 0.5rem 1.4rem;
+            font-family: 'Barlow', sans-serif;
+            font-size: 0.78rem;
+            font-weight: 700;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            border: none;
+            cursor: pointer;
+            clip-path: polygon(10px 0%, 100% 0%, calc(100% - 10px) 100%, 0% 100%);
+            transition: background 0.2s, transform 0.15s;
+            text-decoration: none;
+        }
+        .chip-solid { background: var(--purple-accent); color: #fff; }
+        .chip-solid:hover { background: var(--purple-hover); }
+        .chip-outline {
+            background: transparent;
+            color: var(--text-2);
+            box-shadow: inset 0 0 0 1px var(--border-hi);
+        }
+        .chip-outline:hover {
+            color: var(--text-1);
+            box-shadow: inset 0 0 0 1px var(--purple-accent);
+        }
+
+        /* ──────────── HERO ──────────── */
+        .hero {
+            position: relative;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            padding: calc(64px + 5rem) 3rem 5rem;
+            overflow: hidden;
+        }
+
+        /* Diagonal purple stripe — key visual element */
+        .hero-stripe {
+            position: absolute;
+            right: 0; top: 0; bottom: 0;
+            width: 52%;
+            background: linear-gradient(160deg, var(--purple-mid) 0%, var(--purple-deep) 100%);
+            clip-path: polygon(12% 0%, 100% 0%, 100% 100%, 0% 100%);
+            pointer-events: none;
+        }
+        .hero-stripe::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(ellipse at 65% 38%, rgba(124,45,255,0.42) 0%, transparent 65%);
+        }
+
+        .hero-orb {
+            position: absolute;
+            left: 18%; top: 15%;
+            width: 480px; height: 480px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(225,6,0,0.07) 0%, transparent 70%);
+            pointer-events: none;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            width: 100%;
+            align-items: center;
+        }
+
+        .eyebrow {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.75rem;
+            font-family: 'Barlow', sans-serif;
+            font-size: 0.72rem;
+            font-weight: 600;
+            letter-spacing: 0.22em;
+            text-transform: uppercase;
+            color: var(--purple-accent);
+            margin-bottom: 1.75rem;
+        }
+        .eyebrow::before {
+            content: '';
+            width: 28px; height: 2px;
+            background: var(--purple-accent);
+            flex-shrink: 0;
+        }
+
+        .hero-heading {
+            font-family: 'Barlow Condensed', sans-serif;
+            font-size: clamp(4.5rem, 9vw, 7.5rem);
+            font-weight: 900;
+            text-transform: uppercase;
+            line-height: 0.9;
+            letter-spacing: -0.01em;
+            margin-bottom: 1.75rem;
+        }
+        .hero-heading .outline {
+            color: transparent;
+            -webkit-text-stroke: 2px var(--purple-accent);
+        }
+
+        .hero-sub {
+            font-size: 1rem;
+            color: var(--text-2);
+            line-height: 1.65;
+            max-width: 400px;
+            font-weight: 300;
+            margin-bottom: 2.5rem;
+        }
+
+        .hero-cta { display: flex; align-items: center; gap: 1rem; margin-bottom: 4rem; }
+
+        .hero-cta .chip {
+            clip-path: polygon(12px 0%, 100% 0%, calc(100% - 12px) 100%, 0% 100%);
+            padding: 0.75rem 2rem;
+            font-size: 0.82rem;
+        }
+
+        .hero-stats {
+            display: flex;
+            gap: 3rem;
+            padding-top: 2rem;
+            border-top: 1px solid var(--border);
+        }
+        .stat-n {
+            font-family: 'Barlow Condensed', sans-serif;
+            font-size: 2.25rem;
+            font-weight: 900;
+            line-height: 1;
+        }
+        .stat-l {
+            font-family: 'Barlow', sans-serif;
+            font-size: 0.68rem;
+            font-weight: 500;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: var(--text-3);
+            margin-top: 0.2rem;
+        }
+
+        /* Hero visual */
+        .hero-visual {
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem;
+        }
+
+        .helmet-wrap { position: relative; }
+
+        .helmet-glow {
+            position: absolute;
+            inset: -50px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(225,6,0,0.45) 0%, transparent 65%);
+            animation: breathe 3.5s ease-in-out infinite;
+        }
+        @keyframes breathe {
+            0%, 100% { opacity: 0.7; transform: scale(1); }
+            50%       { opacity: 1;   transform: scale(1.1); }
+        }
+
+        .helmet-svg {
+            position: relative;
+            z-index: 1;
+            width: 280px; height: 280px;
+            animation: float 3.5s ease-in-out infinite;
+            filter: drop-shadow(0 24px 44px rgba(124,45,255,0.55));
+        }
+        @keyframes float {
+            0%, 100% { transform: translateY(0px) rotate(-1deg); }
+            50%       { transform: translateY(-14px) rotate(1deg); }
+        }
+
+        /* Floating info badges */
+        .badge {
+            position: absolute;
+            background: rgba(6, 6, 8, 0.78);
+            backdrop-filter: blur(10px);
+            border: 1px solid var(--border-hi);
+            padding: 0.8rem 1.2rem;
+            z-index: 3;
+        }
+        .badge.tl { top: 0.5rem; left: -1.5rem; }
+        .badge.br { bottom: 0.5rem; right: -1rem; }
+
+        .badge-lbl {
+            font-family: 'Barlow', sans-serif;
+            font-size: 0.62rem;
+            font-weight: 600;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            color: var(--purple-accent);
+            margin-bottom: 0.2rem;
+        }
+        .badge-val {
+            font-family: 'Barlow Condensed', sans-serif;
+            font-size: 1.05rem;
+            font-weight: 700;
+        }
+
+        /* ──────────── TICKER ──────────── */
+        .ticker { background: var(--purple-accent); padding: 0.65rem 0; overflow: hidden; }
+
+        .ticker-track {
+            display: flex;
+            width: max-content;
+            animation: tickerScroll 28s linear infinite;
+        }
+        @keyframes tickerScroll {
+            from { transform: translateX(0); }
+            to   { transform: translateX(-50%); }
+        }
+
+        .ticker-set { display: flex; }
+
+        .ticker-item {
+            font-family: 'Barlow', sans-serif;
+            font-size: 0.75rem;
+            font-weight: 700;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            color: #fff;
+            white-space: nowrap;
+            padding: 0 2rem;
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+        }
+        .ticker-item::after { content: '◆'; font-size: 0.35rem; opacity: 0.5; }
+
+        /* ──────────── SECTIONS ──────────── */
+        .section { padding: 5rem 3rem; }
+        .section + .section { padding-top: 0; }
+
+        .s-eyebrow {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            font-family: 'Barlow', sans-serif;
+            font-size: 0.7rem;
+            font-weight: 600;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: var(--purple-accent);
+            margin-bottom: 0.6rem;
+        }
+        .s-eyebrow::before { content: ''; width: 22px; height: 2px; background: var(--purple-accent); }
+
+        .s-title {
+            font-family: 'Barlow Condensed', sans-serif;
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            font-weight: 900;
+            text-transform: uppercase;
+            line-height: 0.95;
+        }
+
+        .s-header { margin-bottom: 2.5rem; }
+
+        .s-header-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+            margin-bottom: 2.5rem;
+        }
+
+        /* ──────────── CATEGORIES ──────────── */
+        .cat-grid {
+            display: grid;
+            grid-template-columns: repeat(6, 1fr);
+            gap: 1rem;
+        }
+
+        .cat-card {
+            background: var(--purple-deep);
+            border: 1px solid var(--border);
+            padding: 1.75rem 1.25rem 1.5rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            /* Chamfered corner — repeated design motif */
+            clip-path: polygon(0 0, calc(100% - 14px) 0, 100% 14px, 100% 100%, 0 100%);
+        }
+        .cat-card::before {
+            content: '';
+            position: absolute; inset: 0;
+            background: linear-gradient(135deg, rgba(225,6,0,0.35) 0%, transparent 60%);
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+        .cat-card.active,
+        .cat-card:hover { border-color: var(--purple-accent); transform: translateY(-4px); }
+        .cat-card.active::before,
+        .cat-card:hover::before { opacity: 1; }
+
+        .cat-icon { font-size: 2.25rem; display: block; margin-bottom: 0.85rem; }
+
+        .cat-name {
+            font-family: 'Barlow Condensed', sans-serif;
+            font-size: 1rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 0.04em;
+            margin-bottom: 0.2rem;
+        }
+        .cat-count { font-family: 'Barlow', sans-serif; font-size: 0.7rem; color: var(--text-3); }
+
+        /* ──────────── PRODUCTS ──────────── */
+        .prod-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1.5rem;
+        }
+
+        .prod-card {
+            background: linear-gradient(175deg, rgba(233,216,255,0.72) 0%, rgba(255,255,255,0.96) 100%);
+            border: 1px solid var(--border);
+            overflow: hidden;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            clip-path: polygon(0 0, calc(100% - 14px) 0, 100% 14px, 100% 100%, 0 100%);
+        }
+        .prod-card:hover {
+            border-color: var(--purple-accent);
+            box-shadow: 0 0 36px var(--purple-glow);
+            transform: translateY(-5px);
+        }
+
+        .prod-img {
+            height: 200px;
+            background: linear-gradient(145deg, var(--purple-deep) 0%, var(--purple-mid) 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+        .prod-img::after {
+            content: '';
+            position: absolute; inset: 0;
+            background: linear-gradient(to top, rgba(6,6,8,0.45) 0%, transparent 55%);
+        }
+
+        .prod-emoji {
+            font-size: 4.5rem;
+            filter: drop-shadow(0 0 18px rgba(107,33,200,0.75));
+            position: relative; z-index: 1;
+        }
+
+        .prod-tag {
+            position: absolute;
+            top: 0.85rem; left: 0.85rem;
+            background: var(--purple-accent);
+            color: #fff;
+            font-family: 'Barlow', sans-serif;
+            font-size: 0.6rem;
+            font-weight: 700;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            padding: 0.22rem 0.65rem;
+            clip-path: polygon(5px 0%, 100% 0%, calc(100% - 5px) 100%, 0% 100%);
+            z-index: 2;
+        }
+
+        .prod-body { padding: 1.1rem 1.25rem 1.4rem; }
+
+        .prod-brand {
+            font-family: 'Barlow', sans-serif;
+            font-size: 0.65rem;
+            font-weight: 600;
+            letter-spacing: 0.14em;
+            text-transform: uppercase;
+            color: var(--purple-accent);
+            margin-bottom: 0.35rem;
+        }
+        .prod-name {
+            font-family: 'Barlow Condensed', sans-serif;
+            font-size: 1.1rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            line-height: 1.15;
+            margin-bottom: 0.45rem;
+        }
+        .prod-desc {
+            font-size: 0.78rem;
+            color: var(--text-2);
+            line-height: 1.55;
+            font-weight: 300;
+            margin-bottom: 1rem;
+        }
+        .prod-footer { display: flex; align-items: center; justify-content: space-between; }
+
+        .prod-price {
+            font-family: 'Barlow Condensed', sans-serif;
+            font-size: 1.45rem;
+            font-weight: 900;
+        }
+        .prod-price .cur { font-size: 0.85rem; font-weight: 400; color: var(--text-2); }
+
+        .btn-add {
+            background: transparent;
+            color: var(--purple-accent);
+            border: 1px solid var(--purple-accent);
+            padding: 0.45rem 0.95rem;
+            font-family: 'Barlow', sans-serif;
+            font-size: 0.68rem;
+            font-weight: 700;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            cursor: pointer;
+            clip-path: polygon(5px 0%, 100% 0%, calc(100% - 5px) 100%, 0% 100%);
+            transition: all 0.2s;
+        }
+        .btn-add:hover { background: var(--purple-accent); color: #fff; }
+
+        /* Product count label */
+        .prod-empty {
+            grid-column: 1 / -1;
+            text-align: center;
+            padding: 3.5rem;
+            color: var(--text-3);
+            font-size: 0.9rem;
+        }
+
+        /* ──────────── TRUST BANNER ──────────── */
+        .trust {
+            margin: 0 3rem;
+            background: linear-gradient(125deg, var(--purple-mid) 0%, var(--purple-deep) 100%);
+            padding: 3.5rem 4rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+            /* All four corners chamfered */
+            clip-path: polygon(0 0, calc(100% - 22px) 0, 100% 22px, 100% 100%, 22px 100%, 0 calc(100% - 22px));
+        }
+        .trust::after {
+            content: '';
+            position: absolute;
+            top: -80px; right: -80px;
+            width: 320px; height: 320px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(124,45,255,0.32) 0%, transparent 70%);
+        }
+
+        .trust-headline {
+            font-family: 'Barlow Condensed', sans-serif;
+            font-size: 2.75rem;
+            font-weight: 900;
+            text-transform: uppercase;
+            line-height: 0.95;
+            margin-bottom: 0.5rem;
+        }
+        .trust-sub { font-size: 0.9rem; color: rgba(36,21,50,0.62); font-weight: 300; }
+
+        .trust-features { display: flex; gap: 3rem; position: relative; z-index: 2; }
+
+        .trust-feat { display: flex; align-items: center; gap: 0.85rem; }
+        .trust-feat-icon { font-size: 2rem; flex-shrink: 0; }
+
+        .trust-feat-title {
+            font-family: 'Barlow', sans-serif;
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-bottom: 0.15rem;
+        }
+        .trust-feat-sub { font-size: 0.72rem; color: rgba(36,21,50,0.50); }
+
+        /* ──────────── FOOTER ──────────── */
+        footer {
+            padding: 4rem 3rem;
+            margin-top: 5rem;
+            border-top: 1px solid var(--border);
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            gap: 3rem;
+            margin-bottom: 3rem;
+        }
+
+        .footer-logo {
+            font-family: 'Barlow Condensed', sans-serif;
+            font-size: 1.75rem;
+            font-weight: 900;
+            letter-spacing: 0.05em;
+            margin-bottom: 0.85rem;
+        }
+        .footer-logo em { font-style: normal; color: var(--purple-accent); }
+
+        .footer-desc { font-size: 0.83rem; color: var(--text-3); line-height: 1.75; max-width: 260px; }
+
+        .footer-col-title {
+            font-family: 'Barlow', sans-serif;
+            font-size: 0.65rem;
+            font-weight: 700;
+            letter-spacing: 0.18em;
+            text-transform: uppercase;
+            color: var(--text-3);
+            margin-bottom: 1.25rem;
+        }
+
+        .footer-links { list-style: none; display: flex; flex-direction: column; gap: 0.7rem; }
+
+        .footer-links a {
+            font-size: 0.83rem;
+            color: var(--text-2);
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+        .footer-links a:hover { color: var(--purple-hover); }
+
+        .footer-bottom {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-top: 2rem;
+            border-top: 1px solid var(--border);
+        }
+        .footer-copy { font-size: 0.78rem; color: var(--text-3); }
+
+        /* ──────────── RESPONSIVE ──────────── */
+        @media (max-width: 1024px) {
+            .cat-grid { grid-template-columns: repeat(3, 1fr); }
+            .prod-grid { grid-template-columns: repeat(2, 1fr); }
+        }
+
+        @media (max-width: 900px) {
+            .nav { padding: 0 1.5rem; }
+            .nav-links { display: none; }
+
+            .hero { padding: calc(64px + 2rem) 1.5rem 3rem; }
+            .hero-content { grid-template-columns: 1fr; gap: 3rem; }
+            .hero-visual { order: -1; }
+            .helmet-svg { width: 200px; height: 200px; }
+            .hero-stripe {
+                width: 100%; height: 42%;
+                clip-path: polygon(0 0, 100% 0, 100% 70%, 0 100%);
+            }
+            .hero-stats { gap: 2rem; }
+            .badge { display: none; }
+
+            .section { padding: 3rem 1.5rem; }
+
+            .trust {
+                margin: 0 1.5rem;
+                padding: 2.25rem 2rem;
+                flex-direction: column;
+                gap: 2rem;
+                align-items: flex-start;
+            }
+            .trust-features { flex-wrap: wrap; gap: 1.5rem; }
+
+            .footer-grid { grid-template-columns: 1fr 1fr; }
+            footer { padding: 3rem 1.5rem; }
+        }
+
+        @media (max-width: 480px) {
+            .cat-grid { grid-template-columns: repeat(2, 1fr); }
+            .prod-grid { grid-template-columns: 1fr; }
+            .hero-heading { font-size: 3.5rem; }
+            .footer-grid { grid-template-columns: 1fr; gap: 2rem; }
+        }
+
+        /* Cart pop animation */
+        @keyframes cartPop {
+            0%   { transform: scale(1); }
+            40%  { transform: scale(1.12); background: var(--purple-hover); }
+            100% { transform: scale(1); }
+        }
+        .cart-pop { animation: cartPop 0.35s ease; }
+
+        /* Fade-in on load */
+        @keyframes fadeUp {
+            from { opacity: 0; transform: translateY(16px); }
+            to   { opacity: 1; transform: translateY(0); }
+        }
+        .hero-text > * {
+            opacity: 0;
+            animation: fadeUp 0.6s ease forwards;
+        }
+        .hero-text > *:nth-child(1) { animation-delay: 0.1s; }
+        .hero-text > *:nth-child(2) { animation-delay: 0.25s; }
+        .hero-text > *:nth-child(3) { animation-delay: 0.4s; }
+        .hero-text > *:nth-child(4) { animation-delay: 0.52s; }
+        .hero-text > *:nth-child(5) { animation-delay: 0.64s; }
+    </style>
+
+
+<style id="helmet-selector-styles">
+.helmet-selector{display:none;max-width:1120px;margin:30px auto 12px;padding:32px;border-radius:26px;background:linear-gradient(135deg,#fff,#101010);border:1px solid rgba(225,6,0,.16);box-shadow:0 18px 48px rgba(120,0,0,.10)}
+.helmet-selector.active{display:block;animation:helmetSelectorIn .24s ease-out}
+@keyframes helmetSelectorIn{from{opacity:0;transform:translateY(-8px)}to{opacity:1;transform:translateY(0)}}
+.helmet-selector-head{display:flex;align-items:flex-start;justify-content:space-between;gap:20px;margin-bottom:24px}
+.helmet-selector-kicker{color:#E10600;font-size:12px;font-weight:850;letter-spacing:.14em;text-transform:uppercase;margin-bottom:7px}
+.helmet-selector-title{margin:0;color:#F5F5F5;font-size:clamp(27px,4vw,40px)}
+.helmet-selector-text{margin:7px 0 0;color:#BDBDBD}
+.helmet-selector-close{border:0;background:#2A1014;color:#FF6B6B;border-radius:12px;padding:10px 15px;font-weight:800;cursor:pointer}
+.helmet-selector-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+.helmet-brand-option{border:1px solid rgba(225,6,0,.14);border-radius:18px;background:#fff;padding:19px;text-align:left;text-decoration:none;display:block;transition:.2s ease}
+.helmet-brand-option:hover{transform:translateY(-4px);border-color:rgba(225,6,0,.45);box-shadow:0 12px 28px rgba(124,45,255,.12)}
+.helmet-brand-icon{width:44px;height:44px;border-radius:13px;display:grid;place-items:center;background:linear-gradient(135deg,#E10600,#8B0000);color:#fff;font-weight:900;margin-bottom:13px}
+.helmet-brand-option strong{display:block;color:#F5F5F5;font-size:17px}
+.helmet-brand-option span{display:block;margin-top:5px;color:#A0A0A0;font-size:12px}
+@media(max-width:900px){.helmet-selector-grid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:520px){.helmet-selector{padding:23px}.helmet-selector-head{flex-direction:column}.helmet-selector-grid{grid-template-columns:1fr}}
+</style>
+
+
+<style id="welcome-slider-styles">
+/* ──────────── PORTADA / SLIDER DE BIENVENIDA ──────────── */
+.welcome-slider{position:relative;width:100%;height:clamp(220px,52.6vw,820px);min-height:0;margin-top:64px;overflow:hidden;background:#050505}
+.welcome-slides{position:absolute;inset:0}
+.welcome-slide{position:absolute;inset:0;opacity:0;visibility:hidden;transform:scale(1);transition:opacity .9s ease,visibility .9s}
+.welcome-slide.active{opacity:1;visibility:visible}
+.welcome-slide img{width:100%;height:100%;display:block;object-fit:contain;object-position:center;background:#050505}
+.welcome-slide::after{content:none}
+.welcome-content{position:absolute;z-index:3;left:clamp(1.5rem,7vw,7rem);top:50%;transform:translateY(-50%);max-width:620px;color:#fff}
+.welcome-kicker{display:inline-flex;align-items:center;gap:.7rem;font-family:'Barlow',sans-serif;font-size:.72rem;font-weight:700;letter-spacing:.22em;text-transform:uppercase;margin-bottom:1rem}
+.welcome-kicker::before{content:"";width:34px;height:2px;background:#FF1E1E;flex-shrink:0}
+.welcome-title{margin:0 0 1rem;font-family:'Barlow Condensed',sans-serif;font-size:clamp(3.5rem,8vw,7.5rem);line-height:.84;font-weight:900;letter-spacing:.01em;text-transform:uppercase;text-shadow:0 8px 30px rgba(0,0,0,.35)}
+.welcome-title span{color:transparent;-webkit-text-stroke:2px #fff}
+.welcome-text{max-width:470px;margin:0 0 1.5rem;color:rgba(255,255,255,.88);font-size:1rem;line-height:1.6}
+.welcome-actions{display:flex;gap:.8rem;flex-wrap:wrap}
+.welcome-actions .chip-outline{color:#fff;box-shadow:inset 0 0 0 1px rgba(255,255,255,.55)}
+.welcome-actions .chip-outline:hover{color:#fff;box-shadow:inset 0 0 0 1px #FF1E1E}
+.welcome-arrow{position:absolute;z-index:6;top:50%;transform:translateY(-50%);width:48px;height:48px;border:1px solid rgba(255,255,255,.38);border-radius:50%;background:rgba(5,4,8,.38);color:#fff;font-size:1.55rem;line-height:1;cursor:pointer;backdrop-filter:blur(8px);transition:.2s ease}
+.welcome-arrow:hover{background:#E10600;border-color:#E10600;transform:translateY(-50%) scale(1.06)}
+.welcome-prev{left:20px}.welcome-next{right:20px}
+.welcome-dots{position:absolute;z-index:6;left:50%;bottom:25px;transform:translateX(-50%);display:flex;gap:9px;align-items:center}
+.welcome-dot{width:9px;height:9px;padding:0;border:1px solid rgba(255,255,255,.8);border-radius:50%;background:transparent;cursor:pointer;transition:.25s ease}
+.welcome-dot.active{width:30px;border-radius:10px;background:#FF1E1E;border-color:#FF1E1E}
+.welcome-counter{position:absolute;z-index:6;right:clamp(1.5rem,5vw,5rem);bottom:24px;color:rgba(255,255,255,.75);font-family:'Barlow Condensed',sans-serif;font-size:1rem;letter-spacing:.12em}
+.welcome-progress{position:absolute;z-index:7;left:0;bottom:0;height:3px;width:100%;background:rgba(255,255,255,.16);overflow:hidden}
+.welcome-progress span{display:block;height:100%;width:0;background:#FF1E1E}
+.welcome-slide.active .welcome-progress-fill{animation:welcomeProgress 5.5s linear forwards}
+@keyframes welcomeProgress{from{width:0}to{width:100%}}
+@media(max-width:700px){
+  .welcome-slider{height:clamp(200px,52.6vw,440px);min-height:0}
+  .welcome-content{left:1.35rem;right:1.35rem;top:auto;bottom:68px;transform:none}
+  .welcome-title{font-size:clamp(3rem,16vw,5rem)}
+  .welcome-text{font-size:.86rem;max-width:360px}
+  .welcome-arrow{width:39px;height:39px;font-size:1.2rem}
+  .welcome-prev{left:10px}.welcome-next{right:10px}.welcome-counter{display:none}
+}
+</style>
+
+
+<style id="category-dropdown-styles">
+.nav-dropdown{position:relative}
+.nav-dropdown-toggle{
+    border:0;background:transparent;color:var(--text-2);cursor:pointer;
+    font-family:'Barlow',sans-serif;font-size:.78rem;font-weight:600;
+    letter-spacing:.12em;text-transform:uppercase;padding:0;
+    display:flex;align-items:center;gap:.35rem;transition:color .2s
+}
+.nav-dropdown-toggle:hover,.nav-dropdown-toggle.open{color:#fff}
+.nav-chevron{font-size:.9rem;transition:transform .2s}
+.nav-dropdown-toggle.open .nav-chevron{transform:rotate(180deg)}
+.nav-dropdown-menu{
+    position:absolute;top:calc(100% + 16px);left:50%;transform:translateX(-50%) translateY(-6px);
+    width:220px;padding:8px;border-radius:14px;background:rgba(18,13,27,.98);
+    border:1px solid rgba(225,6,0,.38);box-shadow:0 18px 42px rgba(0,0,0,.28);
+    backdrop-filter:blur(16px);opacity:0;visibility:hidden;pointer-events:none;
+    transition:.2s ease;z-index:400
+}
+.nav-dropdown-menu.open{
+    opacity:1;visibility:visible;pointer-events:auto;transform:translateX(-50%) translateY(0)
+}
+.nav-dropdown-menu::before{
+    content:"";position:absolute;top:-7px;left:50%;width:13px;height:13px;
+    transform:translateX(-50%) rotate(45deg);background:#120D1B;
+    border-left:1px solid rgba(225,6,0,.38);border-top:1px solid rgba(225,6,0,.38)
+}
+.nav-dropdown-menu a{
+    display:flex!important;align-items:center;gap:.7rem;padding:.72rem .8rem;
+    border-radius:10px;color:#eee!important;font-size:.76rem!important;
+    letter-spacing:.06em!important;text-transform:uppercase;text-decoration:none;
+    transition:.18s ease
+}
+.nav-dropdown-menu a:hover{background:rgba(225,6,0,.18);color:#fff!important;transform:translateX(2px)}
+.nav-dropdown-menu a:first-child{color:#FF7777!important}
+.brand-section{
+    padding-top:4.5rem;padding-bottom:4rem
+}
+.brand-grid{
+    display:grid;grid-template-columns:repeat(4,1fr);gap:1.25rem
+}
+.brand-card{
+    position:relative;min-height:245px;padding:1.5rem;
+    background:linear-gradient(155deg,#171717 0%,#0A0A0A 100%);
+    border:1px solid var(--border);overflow:hidden;
+    cursor:pointer;transition:.28s ease;
+    clip-path:polygon(0 0,calc(100% - 16px) 0,100% 16px,100% 100%,0 100%);
+}
+.brand-card::before{
+    content:"";position:absolute;inset:0;
+    background:linear-gradient(135deg,rgba(225,6,0,.20),transparent 60%);
+    opacity:0;transition:.28s ease
+}
+.brand-card:hover{
+    transform:translateY(-7px);border-color:var(--purple-accent);
+    box-shadow:0 18px 35px rgba(225,6,0,.15)
+}
+.brand-card:hover::before{opacity:1}
+.brand-symbol{
+    position:relative;z-index:1;width:58px;height:58px;border-radius:16px;
+    display:grid;place-items:center;background:linear-gradient(135deg,#E10600,#8B0000);
+    color:#fff;font-family:'Barlow Condensed',sans-serif;font-size:1.3rem;font-weight:900;
+    box-shadow:0 10px 24px rgba(225,6,0,.22);margin-bottom:2.2rem
+}
+.brand-card h3{
+    position:relative;z-index:1;font-family:'Barlow Condensed',sans-serif;
+    font-size:1.7rem;font-weight:900;text-transform:uppercase;
+    margin:0 0 .35rem
+}
+.brand-card p{
+    position:relative;z-index:1;color:var(--text-2);font-size:.76rem;line-height:1.45;
+    max-width:210px
+}
+.brand-card .brand-arrow{
+    position:absolute;right:1rem;bottom:1rem;z-index:1;
+    font-family:'Barlow',sans-serif;font-size:.7rem;font-weight:800;
+    letter-spacing:.1em;text-transform:uppercase;color:var(--purple-accent)
+}
+@media(max-width:1024px){
+    .brand-grid{grid-template-columns:repeat(2,1fr)}
+}
+@media(max-width:900px){
+    .nav-dropdown-menu{left:0;transform:translateY(-6px)}
+    .nav-dropdown-menu.open{transform:translateY(0)}
+    .nav-dropdown-menu::before{left:28px}
+}
+@media(max-width:520px){
+    .brand-grid{grid-template-columns:1fr}
+}
+</style>
+
+
+<style id="ich-product-styles">
+.brand-image-wrap{height:155px;background:#fff !important;margin:-.35rem -.35rem 1rem;border-radius:14px;overflow:hidden;background:#fff;display:flex;align-items:center;justify-content:center}
+.brand-image-wrap img{width:100%;height:100%;object-fit:contain;display:block;background:#fff}
+.brand-mini{font-family:'Barlow',sans-serif;color:var(--purple-accent);font-size:.65rem;font-weight:800;letter-spacing:.14em;text-transform:uppercase;margin-bottom:.35rem}
+.brand-price{margin-top:.7rem;font-family:'Barlow Condensed',sans-serif;font-size:1.55rem;font-weight:900}
+.brand-price span{font-family:'Barlow',sans-serif;font-size:.65rem;color:var(--text-3);margin-left:.25rem}
+.ich-detail-card{display:grid;grid-template-columns:1fr 1fr;gap:2.5rem;align-items:center;padding:2rem;background:linear-gradient(140deg,#171717 0%,#0A0A0A 100%);border:1px solid var(--border);clip-path:polygon(0 0,calc(100% - 22px) 0,100% 22px,100% 100%,22px 100%,0 calc(100% - 22px))}
+.ich-detail-image{min-height:390px;display:flex;align-items:center;justify-content:center;background:#fff;overflow:hidden}
+.ich-detail-image img{width:100%;height:100%;max-height:480px;object-fit:contain}
+.ich-detail-info{padding:1rem}
+.ich-detail-desc{margin:1.2rem 0;color:var(--text-2);line-height:1.7}
+.ich-detail-price{margin:1.3rem 0 1.6rem;font-family:'Barlow Condensed',sans-serif;font-size:2.5rem;font-weight:900}
+.ich-detail-price span{display:block;margin-top:.15rem;font-family:'Barlow',sans-serif;font-size:.65rem;letter-spacing:.13em;color:var(--text-3)}
+@media(max-width:800px){.ich-detail-card{grid-template-columns:1fr}.ich-detail-image{min-height:290px}}
+</style>
+
+
+<style id="edge-product-styles">
+.edge-detail-card{display:grid;grid-template-columns:1fr 1fr;gap:2.5rem;align-items:center;padding:2rem;background:linear-gradient(140deg,#171717 0%,#0A0A0A 100%);border:1px solid var(--border);clip-path:polygon(0 0,calc(100% - 22px) 0,100% 22px,100% 100%,22px 100%,0 calc(100% - 22px))}
+.edge-detail-image{min-height:390px;display:flex;align-items:center;justify-content:center;background:#fff;overflow:hidden}
+.edge-detail-image img{width:100%;height:100%;max-height:480px;object-fit:contain}
+.edge-detail-info{padding:1rem}
+.edge-detail-desc{margin:1.2rem 0;color:var(--text-2);line-height:1.7;max-width:520px}
+.edge-detail-price{margin:1.3rem 0 1.6rem;font-family:'Barlow Condensed',sans-serif;font-size:2.5rem;font-weight:900}
+.edge-detail-price span{display:block;margin-top:.15rem;font-family:'Barlow',sans-serif;font-size:.65rem;letter-spacing:.13em;color:var(--text-3)}
+@media(max-width:800px){.edge-detail-card{grid-template-columns:1fr}.edge-detail-image{min-height:290px}}
+</style>
+
+
+<style id="shaft-product-styles">
+.shaft-detail-card{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:2.5rem;
+    align-items:center;
+    padding:2rem;
+    background:linear-gradient(140deg,#171717 0%,#0A0A0A 100%);
+    border:1px solid var(--border);
+    clip-path:polygon(0 0,calc(100% - 22px) 0,100% 22px,100% 100%,22px 100%,0 calc(100% - 22px));
+}
+.shaft-detail-image{
+    min-height:390px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    background:#fff;
+    overflow:hidden;
+}
+.shaft-detail-image img{
+    width:100%;
+    height:100%;
+    max-height:480px;
+    object-fit:contain;
+}
+.shaft-detail-info{padding:1rem}
+.shaft-detail-desc{
+    margin:1.2rem 0;
+    color:var(--text-2);
+    line-height:1.7;
+    max-width:520px;
+}
+.shaft-detail-price{
+    margin:1.3rem 0 1.6rem;
+    font-family:'Barlow Condensed',sans-serif;
+    font-size:2.5rem;
+    font-weight:900;
+}
+.shaft-detail-price span{
+    display:block;
+    margin-top:.15rem;
+    font-family:'Barlow',sans-serif;
+    font-size:.65rem;
+    letter-spacing:.13em;
+    color:var(--text-3);
+}
+@media(max-width:800px){
+    .shaft-detail-card{grid-template-columns:1fr}
+    .shaft-detail-image{min-height:290px}
+}
+</style>
+
+
+<style id="tech-product-styles">
+.tech-detail-card{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:2.5rem;
+    align-items:center;
+    padding:2rem;
+    background:linear-gradient(140deg,#171717 0%,#0A0A0A 100%);
+    border:1px solid var(--border);
+    clip-path:polygon(0 0,calc(100% - 22px) 0,100% 22px,100% 100%,22px 100%,0 calc(100% - 22px));
+}
+.tech-detail-image{
+    min-height:390px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    background:#fff;
+    overflow:hidden;
+}
+.tech-detail-image img{
+    width:100%;
+    height:100%;
+    max-height:480px;
+    object-fit:contain;
+}
+.tech-detail-info{padding:1rem}
+.tech-detail-desc{
+    margin:1.2rem 0;
+    color:var(--text-2);
+    line-height:1.7;
+    max-width:520px;
+}
+.tech-detail-price{
+    margin:1.3rem 0 1.6rem;
+    font-family:'Barlow Condensed',sans-serif;
+    font-size:1.5rem;
+    font-weight:900;
+    color:var(--purple-accent);
+    text-transform:uppercase;
+}
+@media(max-width:800px){
+    .tech-detail-card{grid-template-columns:1fr}
+    .tech-detail-image{min-height:290px}
+}
+</style>
+
+
+<style id="prorider-product-styles">
+.prorider-detail-card{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:2.5rem;
+    align-items:center;
+    padding:2rem;
+    background:linear-gradient(140deg,#171717 0%,#0A0A0A 100%);
+    border:1px solid var(--border);
+    clip-path:polygon(0 0,calc(100% - 22px) 0,100% 22px,100% 100%,22px 100%,0 calc(100% - 22px));
+}
+.prorider-detail-image{
+    min-height:390px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    background:#fff;
+    overflow:hidden;
+}
+.prorider-detail-image img{
+    width:100%;
+    height:100%;
+    max-height:480px;
+    object-fit:contain;
+}
+.prorider-detail-info{padding:1rem}
+.prorider-detail-desc{
+    margin:1.2rem 0;
+    color:var(--text-2);
+    line-height:1.7;
+    max-width:520px;
+}
+.prorider-detail-price{
+    margin:1.3rem 0 1.6rem;
+    font-family:'Barlow Condensed',sans-serif;
+    font-size:2.5rem;
+    font-weight:900;
+}
+.prorider-detail-price span{
+    display:block;
+    margin-top:.15rem;
+    font-family:'Barlow',sans-serif;
+    font-size:.65rem;
+    letter-spacing:.13em;
+    color:var(--text-3);
+}
+@media(max-width:800px){
+    .prorider-detail-card{grid-template-columns:1fr}
+    .prorider-detail-image{min-height:290px}
+}
+</style>
+
+
+<style id="hro-product-styles">
+.hro-detail-card{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:2.5rem;
+    align-items:center;
+    padding:2rem;
+    background:linear-gradient(140deg,#171717 0%,#0A0A0A 100%);
+    border:1px solid var(--border);
+    clip-path:polygon(0 0,calc(100% - 22px) 0,100% 22px,100% 100%,22px 100%,0 calc(100% - 22px));
+}
+.hro-detail-image{
+    min-height:390px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    background:#fff;
+    overflow:hidden;
+}
+.hro-detail-image img{
+    width:100%;
+    height:100%;
+    max-height:520px;
+    object-fit:contain;
+}
+.hro-detail-info{padding:1rem}
+.hro-detail-desc{
+    margin:1.2rem 0;
+    color:var(--text-2);
+    line-height:1.7;
+    max-width:520px;
+}
+.hro-detail-price{
+    margin:1.3rem 0 1.6rem;
+    font-family:'Barlow Condensed',sans-serif;
+    font-size:2.5rem;
+    font-weight:900;
+}
+.hro-detail-price span{
+    display:block;
+    margin-top:.15rem;
+    font-family:'Barlow',sans-serif;
+    font-size:.65rem;
+    letter-spacing:.13em;
+    color:var(--text-3);
+}
+@media(max-width:800px){
+    .hro-detail-card{grid-template-columns:1fr}
+    .hro-detail-image{min-height:290px}
+}
+</style>
+
+
+<style id="leidy-brand-overrides">
+/* ──────────── LEIDY BIKER SHOP · ROJO / BLANCO / NEGRO ──────────── */
+:root{
+  --bg:#070707;
+  --purple-deep:#151515;
+  --purple-mid:#C8102E;
+  --purple-accent:#E10600;
+  --purple-hover:#FF1E1E;
+  --purple-glow:rgba(225,6,0,.28);
+  --text-1:#F5F5F5;
+  --text-2:#BDBDBD;
+  --text-3:#777;
+  --border:rgba(255,255,255,.12);
+  --border-hi:rgba(225,6,0,.55);
+}
+body{background:#070707;color:#F5F5F5}
+.nav{background:rgba(5,5,5,.92);border-bottom-color:rgba(255,255,255,.10)}
+.site-logo{display:block;width:128px;height:58px;object-fit:contain;object-position:center}
+.logo{display:flex;align-items:center;height:64px}
+.nav-links a,.nav-dropdown-toggle{color:#BDBDBD}
+.main-category-links{gap:1.15rem;align-items:center}
+.main-category-links a{white-space:nowrap;font-size:.70rem}
+@media(max-width:1180px){.main-category-links{gap:.65rem}.main-category-links a{font-size:.62rem}}
+.nav-links a:hover,.nav-dropdown-toggle:hover,.nav-dropdown-toggle.open{color:#fff}
+.chip-solid{background:#E10600;color:#fff}
+.chip-solid:hover{background:#FF1E1E}
+.chip-outline{color:#EDEDED;box-shadow:inset 0 0 0 1px rgba(225,6,0,.55)}
+.chip-outline:hover{color:#fff;box-shadow:inset 0 0 0 1px #E10600}
+
+.hero{background:#070707}
+.hero-stripe{background:linear-gradient(160deg,#B0001A 0%,#210306 100%)}
+.hero-stripe::before{background:radial-gradient(ellipse at 65% 38%,rgba(225,6,0,.42) 0%,transparent 65%)}
+.hero-heading .outline{-webkit-text-stroke-color:#E10600}
+.hero-sub{color:#BDBDBD}
+.hero-stats{border-top-color:rgba(255,255,255,.12)}
+.badge{background:rgba(8,8,8,.86);border-color:rgba(225,6,0,.55)}
+.ticker{background:#E10600}
+.welcome-slider{background:#050505}
+.welcome-kicker::before{background:#E10600}
+.welcome-title span{-webkit-text-stroke-color:#E10600}
+.welcome-arrow:hover{background:#E10600;border-color:#E10600}
+.welcome-dot.active,.welcome-progress span{background:#E10600;border-color:#E10600}
+
+.section{background:#070707}
+.s-eyebrow{color:#FF1E1E}
+.s-eyebrow::before{background:#E10600}
+.s-title{color:#F5F5F5}
+.brand-card,.prod-card,.ich-detail-card,.edge-detail-card,.shaft-detail-card,.tech-detail-card,.prorider-detail-card,.hro-detail-card{
+  background:linear-gradient(145deg,#171717 0%,#0A0A0A 100%);
+  border-color:rgba(255,255,255,.10);
+}
+.brand-card:hover,.prod-card:hover{border-color:#E10600}
+.amx-product-card .brand-symbol{margin-bottom:1rem}
+.amx-product-card .brand-mini{margin-bottom:.25rem}
+.brand-card h3,.prod-name,.prod-price,.footer-logo{color:#F5F5F5}
+.brand-card p,.prod-desc,.ich-detail-desc,.edge-detail-desc,.shaft-detail-desc,.tech-detail-desc,.prorider-detail-desc,.hro-detail-desc{color:#BDBDBD}
+.brand-symbol{background:linear-gradient(135deg,#E10600,#7A0000);box-shadow:0 10px 24px rgba(225,6,0,.22)}
+.brand-mini,.brand-arrow,.prod-brand{color:#FF4D4D}
+.brand-price,.ich-detail-price,.edge-detail-price,.shaft-detail-price,.prorider-detail-price,.hro-detail-price{color:#fff}
+.brand-image-wrap,.ich-detail-image,.edge-detail-image,.shaft-detail-image,.tech-detail-image,.prorider-detail-image,.hro-detail-image{background:#fff !important}
+.prod-img{background:linear-gradient(145deg,#171717 0%,#7A0000 100%)}
+.prod-tag{background:#E10600}
+.btn-add{color:#FF4D4D;border-color:#E10600}
+.btn-add:hover{background:#E10600;color:#fff}
+
+.trust{background:linear-gradient(125deg,#B0001A 0%,#160000 100%)}
+.trust-sub,.trust-feat-sub{color:rgba(255,255,255,.65)}
+footer{background:#050505;border-top-color:rgba(255,255,255,.10)}
+.footer-logo .site-logo{width:180px;height:92px;object-position:left center}
+.footer-links a{color:#BDBDBD}
+.footer-links a:hover{color:#FF4D4D}
+.footer-col-title{color:#777}
+.footer-bottom{border-top-color:rgba(255,255,255,.10)}
+.footer-copy{color:#777}
+
+.nav-dropdown-menu{background:rgba(12,12,12,.98);border-color:rgba(225,6,0,.38)}
+.nav-dropdown-menu::before{background:#0C0C0C;border-left-color:rgba(225,6,0,.38);border-top-color:rgba(225,6,0,.38)}
+.nav-dropdown-menu a:hover{background:rgba(225,6,0,.18)}
+.nav-dropdown-menu a:first-child{color:#FF7777!important}
+
+@media(max-width:900px){
+  .site-logo{width:112px;height:56px}
+}
+</style>
+
+
+<style id="motomellos-alignment-halloween-whatsapp">
+/* Tarjetas de cascos: imagen, descripciones y precios alineados */
+.brand-grid{align-items:stretch;grid-auto-rows:1fr}
+.brand-card{display:flex;flex-direction:column;height:100%;min-height:425px;text-decoration:none}
+.brand-card .brand-image-wrap{height:155px;min-height:155px;flex:0 0 155px;margin:-.35rem -.35rem 1rem;background:#fff}
+.brand-card .brand-image-wrap img{display:block;width:100%;height:100%;object-fit:contain;object-position:center;background:#fff}
+.brand-card .brand-mini{display:block;min-height:.95rem;margin-bottom:.35rem}
+.brand-card h3{min-height:3.15em;line-height:1.05;font-size:clamp(1.25rem,1.45vw,1.7rem);margin:0 0 .5rem}
+.brand-card p{flex:1 1 auto;min-height:4.35em;line-height:1.45;margin:0 0 1rem;max-width:none}
+.brand-card .brand-price{margin-top:auto;padding-top:.35rem;line-height:1.05;min-height:2rem}
+.brand-card .brand-arrow{position:static;display:block;align-self:flex-end;margin-top:.75rem;min-height:1em}
+
+/* Ficha de producto Motomellos */
+.motomellos-detail-card{display:grid;grid-template-columns:1fr 1fr;gap:2.5rem;align-items:center;padding:2rem;background:linear-gradient(140deg,#171717 0%,#0A0A0A 100%);border:1px solid rgba(255,255,255,.10);clip-path:polygon(0 0,calc(100% - 22px) 0,100% 22px,100% 100%,22px 100%,0 calc(100% - 22px))}
+.motomellos-detail-image{min-height:390px;display:flex;align-items:center;justify-content:center;overflow:hidden;background:#fff}
+.motomellos-detail-image img{display:block;width:100%;height:100%;max-height:480px;object-fit:contain;object-position:center}
+.motomellos-detail-info{padding:1rem}
+.motomellos-detail-desc{margin:1.2rem 0;color:#BDBDBD;line-height:1.7;max-width:520px}
+.motomellos-detail-price{margin:1.3rem 0 1.6rem;font-family:'Barlow Condensed',sans-serif;font-size:2.5rem;font-weight:900;color:#fff}
+.motomellos-detail-price span{display:block;margin-top:.15rem;font-family:'Barlow',sans-serif;font-size:.65rem;letter-spacing:.13em;color:#777;text-transform:uppercase}
+@media(max-width:800px){.motomellos-detail-card{grid-template-columns:1fr}.motomellos-detail-image{min-height:290px}}
+@media(max-width:520px){.brand-card{min-height:410px}.brand-card h3{font-size:1.45rem}}
+
+/* WhatsApp flotante con detalles de Halloween */
+.halloween-whatsapp{position:fixed;right:22px;bottom:22px;z-index:9999;width:70px;height:70px;display:grid;place-items:center;border-radius:50%;background:radial-gradient(circle at 30% 25%,#3a174a 0%,#170d25 70%);border:3px solid #ff8a24;box-shadow:0 0 0 5px rgba(255,138,36,.18),0 12px 28px rgba(0,0,0,.45);text-decoration:none;transition:transform .2s ease,box-shadow .2s ease;animation:halloweenWhatsAppPulse 2.7s ease-in-out infinite}
+.halloween-whatsapp:hover{transform:translateY(-3px) scale(1.04);box-shadow:0 0 0 7px rgba(255,138,36,.22),0 15px 32px rgba(0,0,0,.5)}
+.halloween-whatsapp-icon{width:43px;height:43px;display:block;filter:drop-shadow(0 2px 2px rgba(0,0,0,.2))}
+.halloween-whatsapp-badge{position:absolute;top:-10px;right:-8px;width:29px;height:29px;display:grid;place-items:center;border:2px solid #ff8a24;border-radius:50%;background:#2b1235;font-size:17px;line-height:1;box-shadow:0 3px 8px rgba(0,0,0,.3)}
+.halloween-whatsapp:focus-visible{outline:3px solid #fff;outline-offset:5px}
+@keyframes halloweenWhatsAppPulse{0%,100%{box-shadow:0 0 0 5px rgba(255,138,36,.18),0 12px 28px rgba(0,0,0,.45)}50%{box-shadow:0 0 0 9px rgba(255,138,36,.08),0 12px 28px rgba(0,0,0,.45)}}
+@media(max-width:600px){.halloween-whatsapp{right:15px;bottom:16px;width:62px;height:62px}.halloween-whatsapp-icon{width:39px;height:39px}.halloween-whatsapp-badge{width:26px;height:26px;font-size:15px}}
+@media(prefers-reduced-motion:reduce){.halloween-whatsapp{animation:none;transition:none}}
+</style>
+
+</head>
+<body>
+
+    <!-- ── NAVIGATION ── -->
+<nav class="nav" id="mainNav">
+    <a href="#bienvenida" class="logo" aria-label="Leidy Biker Shop"><img class="site-logo" src="assets/logo-leidy-biker-shop.webp" alt="Leidy Biker Shop"></a>
+
+    <ul class="nav-links main-category-links">
+        <li><a href="#cascos">⛑️ Cascos</a></li>
+        <li><a href="guantes.html">🧤 Guantes</a></li>
+        <li><a href="impermeables.html">🌧️ Impermeables</a></li>
+        <li><a href="chaquetas.html">🧥 Chaquetas</a></li>
+        <li><a href="intercomunicadores.html">📡 Intercomunicadores</a></li>
+    </ul>
+
+    <button class="chip chip-solid" id="cartBtn">🛒 Carrito (<span id="cartCount">0</span>)</button>
+</nav>
+
+
+<!-- ──────────── PORTADA DE BIENVENIDA ──────────── -->
+<section class="welcome-slider" id="bienvenida" aria-label="Portada de bienvenida">
+  <div class="welcome-slides">
+    <article class="welcome-slide active">
+      <img src="assets/portada-edge-boston.webp" alt="Nueva colección de cascos Edge Boston"></article>
+    <article class="welcome-slide">
+      <img src="assets/portada-edge-shanghai-gris.webp" alt="Casco Edge blanco de la colección Shanghai Gris"></article>
+  </div>
+  <button class="welcome-arrow welcome-prev" type="button" aria-label="Imagen anterior">‹</button>
+  <button class="welcome-arrow welcome-next" type="button" aria-label="Imagen siguiente">›</button>
+  <div class="welcome-dots" aria-label="Seleccionar portada">
+    <button class="welcome-dot active" type="button" aria-label="Mostrar portada 1"></button>
+    <button class="welcome-dot" type="button" aria-label="Mostrar portada 2"></button>
+  </div>
+  <div class="welcome-counter" aria-hidden="true"><span id="welcomeCurrent">01</span> / 02</div>
+  <div class="welcome-progress"><span id="welcomeProgressFill" class="welcome-progress-fill"></span></div>
+</section>
+<div class="ticker-set" aria-hidden="true">
+                
+                <span class="ticker-item">Equipo certificado DOT · ECE</span>
+                
+                <span class="ticker-item">+200 referencias en stock</span>
+                
+                
+            </div>
+        </div>
+    </div>
+
+    
+    <!-- ── CASCOS / MARCAS ── -->
+    <section class="section brand-section" id="cascos">
+        <div class="s-header-row">
+            <div>
+                <p class="s-eyebrow">Nuestra selección</p>
+                <h2 class="s-title">Cascos</h2>
+            </div>
+            <span class="chip chip-outline">8 marcas</span>
+        </div>
+
+        <div class="brand-grid" id="brandGrid">
+            <a class="brand-card motomellos-product-card" href="#motomellos-product" aria-label="Ver casco Motomellos 909SP Solid Camaleon Visor Iiridium">
+                <div class="brand-image-wrap"><img src="https://virtualpits.vtexassets.com/arquivos/ids/176230-800-auto?v=639004732244570000&amp;width=800&amp;height=auto&amp;aspect=true" alt="Casco Integral 909SP Solid Camaleon Visor Iiridium Motomellos" loading="lazy" decoding="async"></div>
+                <div class="brand-mini">MOTOMELLOS</div>
+                <h3>Casco Integral 909SP Solid Camaleon Visor Iiridium</h3>
+                <p>Casco integral Motomellos con visor iridium camaleón, diseño deportivo y acabado tornasolado.</p>
+                <div class="brand-price">$480.000 <span>COP</span></div>
+                <span class="brand-arrow">Ver producto →</span>
+            </a>
+
+            <a class="brand-card shaft-product-card" href="#shaft-product" aria-label="Ver casco SHAFT SH-502 SP">
+  <div class="brand-image-wrap"><img src="assets/shaft-sh502-sp.webp" alt="Casco SHAFT SH-502 SP"></div>
+  <div class="brand-mini">SHAFT</div>
+  <h3>Casco SHAFT SH-502 SP</h3>
+  <p>Coraza en termoplástico de alto impacto, visor en policarbonato y tapizado cómodo.</p>
+  <div class="brand-price">$430.000 <span>COP</span></div>
+  <span class="brand-arrow">Ver producto →</span>
+</a>
+
+            <a class="brand-card ich-product-card" href="#ich-product" aria-label="Ver casco ICH-501 SP">
+  <div class="brand-image-wrap"><img src="assets/ich-501-sp.webp" alt="Casco ICH-501 SP"></div>
+  <div class="brand-mini">ICH</div>
+  <h3>ICH-501 SP</h3>
+  <p>Casco integral · Certificación DOT · Ventilación avanzada</p>
+  <div class="brand-price">$160.000 <span>COP</span></div>
+  <span class="brand-arrow">Ver producto →</span>
+</a>
+
+            <a class="brand-card edge-product-card" href="#edge-product" aria-label="Ver casco Edge Integral Extreme Sólido">
+  <div class="brand-image-wrap"><img src="assets/edge-integral-extreme-solido.webp" alt="Casco Edge Integral Extreme Sólido"></div>
+  <div class="brand-mini">EDGE</div>
+  <h3>Casco Edge Integral Extreme Sólido</h3>
+  <p>Casco integral · Doble certificación DOT y ECE · Máxima protección y seguridad</p>
+  <div class="brand-price">$390.000 <span>COP</span></div>
+  <span class="brand-arrow">Ver producto →</span>
+</a>
+
+            <a class="brand-card prorider-product-card" href="#prorider-product" aria-label="Ver PRO RIDER 390 Obidza">
+  <div class="brand-image-wrap"><img src="assets/pro-rider-390-obidza.webp" alt="PRO RIDER 390 Obidza"></div>
+  <div class="brand-mini">PRO RIDER</div>
+  <h3>PRO RIDER 390 Obidza</h3>
+  <p>Certificación DOT · Tapizado antialérgico y desmontable · Fabricado en ABS.</p>
+  <div class="brand-price">$380.000 <span>COP</span></div>
+  <span class="brand-arrow">Ver producto →</span>
+</a>
+
+            <a class="brand-card tech-product-card" href="#tech-product" aria-label="Ver casco TECH T10 SOLID">
+  <div class="brand-image-wrap"><img src="assets/tech-t10-solid.jpg" alt="Casco TECH T10 SOLID"></div>
+  <div class="brand-mini">TECH</div>
+  <h3>TECH T10 SOLID</h3>
+  <p>Coraza fabricada en ABS e interior con poliestireno expandido de alta densidad, para un casco seguro y liviano.</p>
+  <div class="brand-price">$140.000 <span>COP</span></div>
+  <span class="brand-arrow">Ver producto →</span>
+</a>
+
+            <a class="brand-card amx-product-card" href="amx.html" aria-label="Ver casco AMX Force Defender">
+                <div class="brand-image-wrap"><img src="assets/amx-force-defender.jpg" alt="Casco integral AMX Force Defender negro mate" loading="lazy"></div>
+                <div class="brand-mini">AMX</div>
+                <h3>AMX</h3>
+                <p>AMX Force Defender · Certificación DOT · Casco integral.</p>
+                <div class="brand-price">$280.000 <span>COP</span></div>
+                <span class="brand-arrow">Ver producto →</span>
+            </a>
+
+            <a class="brand-card hro-product-card" href="#hro-product" aria-label="Ver CASCO INTEGRAL HRO 506 SP">
+  <div class="brand-image-wrap"><img src="assets/hro-506-sp.webp" alt="CASCO INTEGRAL HRO 506 SP"></div>
+  <div class="brand-mini">HRO</div>
+  <h3>CASCO INTEGRAL HRO 506 SP</h3>
+  <p>Coraza fabricada en ABS termoplástico de alta resistencia, que ofrece una estructura firme y confiable.</p>
+  <div class="brand-price">$380.000 <span>COP</span></div>
+  <span class="brand-arrow">Ver producto →</span>
+</a>
+        </div>
+    </section>
+
+
+<section class="section motomellos-detail-section" id="motomellos-product">
+  <div class="motomellos-detail-card">
+    <div class="motomellos-detail-image">
+      <img src="https://virtualpits.vtexassets.com/arquivos/ids/176230-800-auto?v=639004732244570000&amp;width=800&amp;height=auto&amp;aspect=true" alt="Casco Integral 909SP Solid Camaleon Visor Iiridium Motomellos" loading="lazy" decoding="async">
+    </div>
+    <div class="motomellos-detail-info">
+      <p class="s-eyebrow">Marca Motomellos</p>
+      <h2 class="s-title">Casco Integral 909SP Solid Camaleon Visor Iiridium</h2>
+      <p class="motomellos-detail-desc">Casco integral con visor iridium camaleón y acabado tornasolado, ideal para quienes buscan un diseño deportivo y llamativo.</p>
+      <div class="motomellos-detail-price">$480.000 <span>PESOS COLOMBIANOS</span></div>
+      <button class="chip chip-solid" type="button" onclick="addToCart('MOTOMELLOS-909SP-CAMALEON')">+ Agregar al carrito</button>
+    </div>
+  </div>
+</section>
+
+<section class="section ich-detail-section" id="ich-product">
+  <div class="ich-detail-card">
+    <div class="ich-detail-image"><img src="assets/ich-501-sp.webp" alt="Casco ICH-501 SP"></div>
+    <div class="ich-detail-info">
+      <p class="s-eyebrow">Marca ICH</p>
+      <h2 class="s-title">ICH-501 SP</h2>
+      <p class="ich-detail-desc">Casco integral, certificación DOT, ventilación avanzada.</p>
+      <div class="ich-detail-price">$160.000 <span>PESOS COLOMBIANOS</span></div>
+      <button class="chip chip-solid" type="button" onclick="addToCart('ICH-501-SP')">+ Agregar al carrito</button>
+    </div>
+  </div>
+</section>
+
+
+<section class="section edge-detail-section" id="edge-product">
+  <div class="edge-detail-card">
+    <div class="edge-detail-image">
+      <img src="assets/edge-integral-extreme-solido.webp" alt="Casco Edge Integral Extreme Sólido">
+    </div>
+    <div class="edge-detail-info">
+      <p class="s-eyebrow">Marca Edge</p>
+      <h2 class="s-title">Casco Edge Integral Extreme Sólido</h2>
+      <p class="edge-detail-desc">
+        Casco integral, doble certificación DOT y ECE, máxima protección y seguridad.
+      </p>
+      <div class="edge-detail-price">$390.000 <span>PESOS COLOMBIANOS</span></div>
+      <button class="chip chip-solid" type="button" onclick="addToCart('EDGE-INTEGRAL-EXTREME-SOLIDO')">
+        + Agregar al carrito
+      </button>
+    </div>
+  </div>
+</section>
+
+
+<section class="section shaft-detail-section" id="shaft-product">
+  <div class="shaft-detail-card">
+    <div class="shaft-detail-image">
+      <img src="assets/shaft-sh502-sp.webp" alt="Casco SHAFT SH-502 SP">
+    </div>
+    <div class="shaft-detail-info">
+      <p class="s-eyebrow">Marca Shaft</p>
+      <h2 class="s-title">Casco SHAFT SH-502 SP</h2>
+      <p class="shaft-detail-desc">
+        Coraza en termoplástico de alto impacto, un visor en policarbonato y tapizado cómodo.
+      </p>
+      <div class="shaft-detail-price">$430.000 <span>PESOS COLOMBIANOS</span></div>
+      <button class="chip chip-solid" type="button" onclick="addToCart('SHAFT-SH-502-SP')">
+        + Agregar al carrito
+      </button>
+    </div>
+  </div>
+</section>
+
+
+<section class="section tech-detail-section" id="tech-product">
+  <div class="tech-detail-card">
+    <div class="tech-detail-image">
+      <img src="assets/tech-t10-solid.jpg" alt="Casco TECH T10 SOLID">
+    </div>
+    <div class="tech-detail-info">
+      <p class="s-eyebrow">Marca Tech</p>
+      <h2 class="s-title">TECH T10 SOLID</h2>
+      <p class="tech-detail-desc">
+        Coraza fabricada en ABS y el interior contiene poliestireno expandido de alta densidad,
+        siendo así un casco seguro y liviano.
+      </p>
+      <div class="tech-detail-price">$140.000 <span>PESOS COLOMBIANOS</span></div>
+      <button class="chip chip-solid" type="button" onclick="addToCart('TECH-T10-SOLID')">
+        + Agregar al carrito
+      </button>
+    </div>
+  </div>
+</section>
+
+
+<section class="section prorider-detail-section" id="prorider-product">
+  <div class="prorider-detail-card">
+    <div class="prorider-detail-image">
+      <img src="assets/pro-rider-390-obidza.webp" alt="PRO RIDER 390 Obidza">
+    </div>
+    <div class="prorider-detail-info">
+      <p class="s-eyebrow">Marca Pro Rider</p>
+      <h2 class="s-title">PRO RIDER 390 Obidza</h2>
+      <p class="prorider-detail-desc">
+        Certificación DOT, tapizado antialérgico y desmontable, fabricado en ABS.
+      </p>
+      <div class="prorider-detail-price">$380.000 <span>PESOS COLOMBIANOS</span></div>
+      <button class="chip chip-solid" type="button" onclick="addToCart('PRO-RIDER-390-OBIDZA')">
+        + Agregar al carrito
+      </button>
+    </div>
+  </div>
+</section>
+
+
+<section class="section hro-detail-section" id="hro-product">
+  <div class="hro-detail-card">
+    <div class="hro-detail-image">
+      <img src="assets/hro-506-sp.webp" alt="CASCO INTEGRAL HRO 506 SP">
+    </div>
+    <div class="hro-detail-info">
+      <p class="s-eyebrow">Marca HRO</p>
+      <h2 class="s-title">CASCO INTEGRAL HRO 506 SP</h2>
+      <p class="hro-detail-desc">
+        Coraza fabricada en ABS termoplástico de alta resistencia, que ofrece una estructura firme y confiable.
+      </p>
+      <div class="hro-detail-price">$380.000 <span>PESOS COLOMBIANOS</span></div>
+      <button class="chip chip-solid" type="button" onclick="addToCart('HRO-506-SP')">
+        + Agregar al carrito
+      </button>
+    </div>
+  </div>
+</section>
+
+<!-- ── TRUST BANNER ── -->
+    <div class="trust" id="nosotros">
+        <div style="position:relative;z-index:2;">
+            <div class="trust-headline">Protección real<br>para cada ruta.</div>
+            <div class="trust-sub">Equipo homologado.</div>
+        </div>
+        <div class="trust-features">
+            </div>
+            </div>
+            <div class="trust-feat">
+                <span class="trust-feat-icon">💳</span>
+                <div>
+                    <div class="trust-feat-title">Pago seguro</div>
+                    <div class="trust-feat-sub">PSE · Nequi</div>
+                </div>
+            </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ── FOOTER ── -->
+    <footer id="contacto">
+        <div class="footer-grid">
+            <div>
+                <div class="footer-logo"><img class="site-logo" src="assets/logo-leidy-biker-shop.webp" alt="Leidy Biker Shop"></div>
+                <p class="footer-desc">
+                    Tu tienda de confianza para equipo de protección y accesorios para motociclistas en Colombia. Seguridad sin compromisos, envíos a todo el país.
+                </p>
+            </div>
+            <div>
+                <div class="footer-col-title">Tienda</div>
+                <ul class="footer-links">
+                    <li><a href="#">Cascos</a></li>
+                    <li><a href="#">Chaquetas</a></li>
+                    <li><a href="#">Guantes</a></li>
+                    <li><a href="#">Impermeables</a></li>
+                    <li><a href="#">Accesorios</a></li>
+                </ul>
+            </div>
+            <div>
+                <div class="footer-col-title">Soporte</div>
+                <ul class="footer-links">
+                    <li><a href="#">Cómo comprar</a></li>
+                    <li><a href="#">Seguimiento de pedido</a></li>
+                    <li><a href="#">Devoluciones</a></li>
+                    <li><a href="#">Garantía</a></li>
+                    <li><a href="#">Preguntas frecuentes</a></li>
+                </ul>
+            </div>
+            <div>
+                <div class="footer-col-title">Contacto</div>
+                <ul class="footer-links">
+                    <li><a href="#">WhatsApp</a></li>
+                    <li><a href="#">Instagram</a></li>
+                    <li><a href="#">TikTok</a></li>
+                    <li><a href="#">tienda@Leidy Biker Shop.co</a></li>
+                    <li><a href="#">Bogotá, Colombia</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <span class="footer-copy">© 2025 Leidy Biker Shop · Todos los derechos reservados</span>
+            <span class="footer-copy">Hecho para los que ruedan 🏍️</span>
+        </div>
+    </footer>
+
+    <!-- ── SCRIPTS ── -->
+    
+<script>
+    let cart = [];
+
+    function addToCart(id) {
+        const btn = document.getElementById('cartBtn');
+        if (!btn) return;
+
+        document.getElementById('cartCount').textContent = String(
+            Number(document.getElementById('cartCount').textContent || 0) + 1
+        );
+
+        btn.classList.remove('cart-pop');
+        void btn.offsetWidth;
+        btn.classList.add('cart-pop');
+        setTimeout(() => btn.classList.remove('cart-pop'), 400);
+    }
+
+    // Menú desplegable de categorías
+    (() => {
+        const btn = document.getElementById('categoryMenuBtn');
+        const menu = document.getElementById('categoryMenu');
+
+        if (!btn || !menu) return;
+
+        function closeMenu() {
+            btn.classList.remove('open');
+            btn.setAttribute('aria-expanded', 'false');
+            menu.classList.remove('open');
+        }
+
+        btn.addEventListener('click', (event) => {
+            event.stopPropagation();
+            const open = menu.classList.toggle('open');
+            btn.classList.toggle('open', open);
+            btn.setAttribute('aria-expanded', String(open));
+        });
+
+        menu.addEventListener('click', (event) => {
+            const link = event.target.closest('a');
+            if (link) closeMenu();
+        });
+
+        document.addEventListener('click', (event) => {
+            if (!event.target.closest('.nav-dropdown')) closeMenu();
+        });
+
+        document.addEventListener('keydown', (event) => {
+            if (event.key === 'Escape') closeMenu();
+        });
+    })();
+
+    // Efecto de scroll en la barra superior
+    window.addEventListener('scroll', () => {
+        document.getElementById('mainNav')?.classList.toggle('scrolled', window.scrollY > 24);
+    });
+
+    // Enlaces de ancla
+    document.querySelectorAll('a[href^="#"]').forEach(a => {
+        a.addEventListener('click', (event) => {
+            const href = a.getAttribute('href');
+            if (!href || href === '#') {
+                event.preventDefault();
+                return;
+            }
+
+            const target = document.querySelector(href);
+            if (target) {
+                event.preventDefault();
+                target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }
+        });
+    });
+
+    // Slider de bienvenida
+    (() => {
+        const slides = [...document.querySelectorAll('.welcome-slide')];
+        const dots = [...document.querySelectorAll('.welcome-dot')];
+        const prev = document.querySelector('.welcome-prev');
+        const next = document.querySelector('.welcome-next');
+        const counter = document.getElementById('welcomeCurrent');
+        const progress = document.getElementById('welcomeProgressFill');
+        const slider = document.querySelector('.welcome-slider');
+
+        if (!slides.length) return;
+
+        let index = 0;
+        let timer = null;
+
+        function showSlide(newIndex) {
+            index = (newIndex + slides.length) % slides.length;
+
+            slides.forEach((slide, i) => slide.classList.toggle('active', i === index));
+            dots.forEach((dot, i) => dot.classList.toggle('active', i === index));
+
+            if (counter) counter.textContent = String(index + 1).padStart(2, '0');
+
+            if (progress) {
+                progress.style.animation = 'none';
+                void progress.offsetWidth;
+                progress.style.animation = 'welcomeProgress 5.5s linear forwards';
+            }
+        }
+
+        function start() {
+            clearInterval(timer);
+            timer = setInterval(() => showSlide(index + 1), 5500);
+        }
+
+        prev?.addEventListener('click', () => {
+            showSlide(index - 1);
+            start();
+        });
+
+        next?.addEventListener('click', () => {
+            showSlide(index + 1);
+            start();
+        });
+
+        dots.forEach((dot, i) => {
+            dot.addEventListener('click', () => {
+                showSlide(i);
+                start();
+            });
+        });
+
+        slider?.addEventListener('mouseenter', () => clearInterval(timer));
+        slider?.addEventListener('mouseleave', start);
+
+        // Soporte táctil
+        let touchStartX = 0;
+        slider?.addEventListener('touchstart', event => {
+            touchStartX = event.changedTouches[0].clientX;
+            clearInterval(timer);
+        }, { passive: true });
+
+        slider?.addEventListener('touchend', event => {
+            const touchEndX = event.changedTouches[0].clientX;
+            const delta = touchEndX - touchStartX;
+
+            if (Math.abs(delta) > 45) {
+                showSlide(index + (delta < 0 ? 1 : -1));
+            }
+            start();
+        }, { passive: true });
+
+        showSlide(0);
+        start();
+    })();
+</script>
+
+
+<a class="halloween-whatsapp" href="https://wa.me/573142351550" target="_blank" rel="noopener noreferrer" aria-label="Escríbenos por WhatsApp" title="Escríbenos por WhatsApp">
+  <svg class="halloween-whatsapp-icon" viewBox="0 0 48 48" role="img" aria-hidden="true">
+    <circle cx="24" cy="24" r="22" fill="#25D366"/>
+    <path fill="#fff" d="M24 8.2c-8.7 0-15.8 7-15.8 15.7 0 2.8.7 5.5 2.1 7.9l-2.2 8.1 8.3-2.2c2.3 1.3 4.9 2 7.6 2h.1c8.7 0 15.8-7 15.8-15.7 0-4.2-1.6-8.1-4.6-11.1A15.7 15.7 0 0 0 24 8.2Zm0 28.8h-.1c-2.4 0-4.7-.7-6.7-1.9l-.5-.3-4.9 1.3 1.3-4.8-.3-.5a13 13 0 1 1 11.2 6.2Zm7.1-9.7c-.4-.2-2.4-1.2-2.8-1.3-.4-.1-.7-.2-.9.2-.3.4-1.1 1.3-1.3 1.6-.2.3-.5.3-.9.1-.4-.2-1.8-.7-3.4-2.1-1.2-1.1-2.1-2.4-2.3-2.8-.2-.4 0-.6.2-.8l.6-.7c.2-.2.3-.4.4-.6.1-.2 0-.5 0-.7-.1-.2-.9-2.2-1.3-3-.3-.8-.7-.7-.9-.7h-.8c-.3 0-.7.1-1 .5-.3.4-1.3 1.3-1.3 3.2s1.4 3.7 1.6 4c.2.3 2.7 4.2 6.5 5.8.9.4 1.7.7 2.3.8.9.3 1.8.2 2.4.1.8-.1 2.3-1 2.6-1.9.3-.9.3-1.7.2-1.9-.1-.2-.4-.3-.8-.5Z"/>
+  </svg>
+  <span class="halloween-whatsapp-badge" aria-hidden="true">🎃</span>
+</a>
+
+</body>
+</html>
